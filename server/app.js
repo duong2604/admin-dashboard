@@ -18,11 +18,11 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 import path from "path";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-app.use(express.static(path.resolve(__dirname, "../", "./client/dist/")));
-
 const app = express();
 colors.enable();
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+app.use(express.static(path.resolve(__dirname, "../", "./client/dist/")));
 
 app.use(cors());
 app.use(helmet({ crossOriginEmbedderPolicy: false, originAgentCluster: true }));
