@@ -24,7 +24,15 @@ const app = express();
 colors.enable();
 
 app.use(cors());
-app.use(helmet());
+app.use(helmet({ crossOriginEmbedderPolicy: false, originAgentCluster: true }));
+app.use(
+  helmet.contentSecurityPolicy({
+    useDefaults: true,
+    directives: {
+      "img-src": ["'self'", "https: data: blob:"],
+    },
+  })
+);
 app.use(morgan("combined"));
 app.use(cookieParser());
 app.use(compression());
