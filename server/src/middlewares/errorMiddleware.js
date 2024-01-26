@@ -1,9 +1,7 @@
 import { StatusCodes, ReasonPhrases } from "http-status-codes";
 
 export const notFound = (req, res, next) => {
-  const err = new Error("This route does not existed.");
-  err.status = StatusCodes.NOT_FOUND;
-  next(err);
+  res.status(404).json({ msg: "not found" });
 };
 
 export const errorHandler = (err, req, res, next) => {
