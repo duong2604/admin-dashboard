@@ -19,6 +19,7 @@ import { fileURLToPath } from "url";
 import path from "path";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+app.use(express.static(path.resolve(__dirname, "../", "./client/dist/")));
 
 const app = express();
 colors.enable();
@@ -51,13 +52,10 @@ cloudinary.config({
 
 app.use("/api/v1", router);
 
-app.use(express.static(path.join(__dirname, "../", "client", "dist")));
-
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../", "client", "dist", "index.html"));
+  res.sendFile(path.resolve(__dirname, "../", "./client/dist", "index.html"));
 });
 
-console.log(path.join(__dirname, "../", "client", "dist/"));
 // Error handler
 app.use(notFound);
 app.use(errorHandler);
