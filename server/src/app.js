@@ -13,6 +13,13 @@ import { v2 as cloudinary } from "cloudinary";
 import "./db/database.js";
 import { errorHandler, notFound } from "./middlewares/errorMiddleware.js";
 
+// public
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import path from "path";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 const app = express();
 colors.enable();
 
@@ -35,6 +42,11 @@ cloudinary.config({
 // routes
 
 app.use("/api/v1", router);
+
+app.use(express.static(path.join(__dirname, "../../client/dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../../client/dist", "index.html"));
+});
 
 // Error handler
 app.use(notFound);
