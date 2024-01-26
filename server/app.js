@@ -22,7 +22,6 @@ const app = express();
 colors.enable();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-app.use(express.static(path.resolve(__dirname, "../", "./client/dist/")));
 
 app.use(cors());
 app.use(helmet({ crossOriginEmbedderPolicy: false, originAgentCluster: true }));
@@ -52,6 +51,7 @@ cloudinary.config({
 
 app.use("/api/v1", router);
 
+app.use(express.static(path.resolve(__dirname, "../", "./client/dist/")));
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../", "./client/dist", "index.html"));
 });
