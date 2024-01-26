@@ -4,7 +4,7 @@ import { Product } from "../types/data.type";
 const productApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllProducts: builder.query<Product[], void>({
-      query: () => "/products",
+      query: () => "/api/v1/products",
       transformResponse: (response: { metadata: { products: Product[] } }) =>
         response?.metadata.products,
       keepUnusedDataFor: 5,
@@ -21,7 +21,7 @@ const productApiSlice = apiSlice.injectEndpoints({
 
     addProduct: builder.mutation({
       query: (data) => ({
-        url: `/products`,
+        url: `/api/v1/products`,
         method: "POST",
         body: data,
       }),
@@ -30,7 +30,7 @@ const productApiSlice = apiSlice.injectEndpoints({
 
     updateProduct: builder.mutation({
       query: ({ id, data }) => ({
-        url: `/products/${id}`,
+        url: `/api/v1/products/${id}`,
         method: "PATCH",
         body: data,
       }),
@@ -39,7 +39,7 @@ const productApiSlice = apiSlice.injectEndpoints({
 
     deleteProduct: builder.mutation({
       query: (productId) => ({
-        url: `/products/${productId}`,
+        url: `/api/v1/products/${productId}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Products"],
