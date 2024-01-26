@@ -1,0 +1,12 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd server && npm run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
